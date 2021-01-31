@@ -21,6 +21,12 @@ ArrayList<Person> list =
     query.of(new Person())
         .where("age > 5 AND score < ?", new Object[]{10.5})
         .<Person>get();
+
+// querying a view
+ArrayList<Person> list =
+    query.of(new Person(), "AverageScorers") // this view must have the same structure as Person
+        .where("age > 5 AND score < ?", new Object[]{10.5})
+        .<Person>get();
 ```
 ### Update
 ```java

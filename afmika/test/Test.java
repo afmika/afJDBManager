@@ -55,11 +55,17 @@ public class Test {
         // query.run("DELETE Person WHERE score = 1")
         //     .end();
         
-        query.run("SELECT * FROM Person WHERE score > ?", new Object[]{0})
-             .<Person>get(new Person())
-             .forEach(x -> {
-                System.out.println("=>" +x);
-             });
+        query.of(new Person(), "AverageScorers")
+            .select().<Person>get()
+            .forEach(x -> {
+                System.out.println(x);
+            }); // ok
+        
+        // query.run("SELECT * FROM Person WHERE score > ?", new Object[]{0})
+        //      .<Person>get(new Person())
+        //      .forEach(x -> {
+        //         System.out.println("=>" +x);
+        //      });
         
     }
 }
