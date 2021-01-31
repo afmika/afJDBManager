@@ -14,7 +14,7 @@ public class afReadOperation extends afOperation {
         query.copyLogConfigTo(this);
     }
 
-    // for select queries
+    @SuppressWarnings("unchecked")
     public <T> ArrayList<T> get () throws Exception {
         String table_name = this.getTable_name();
         

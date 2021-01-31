@@ -22,6 +22,7 @@ public class afBasicQueryOperation extends afOperation {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public <T> ArrayList<T> get(T instance) throws Exception {
         ArrayList<T> result = new ArrayList<>();
         String sql = sql_query;
