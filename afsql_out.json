@@ -1,0 +1,1 @@
+[{"table_name":"Person","attributes":[{"name":"idperson","type":"INT"},{"name":"name","type":"VARCHAR"},{"name":"score","type":"float"},{"name":"birth_date","type":"TIMESTAMP"}]}]
