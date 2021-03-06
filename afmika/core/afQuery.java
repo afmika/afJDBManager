@@ -65,6 +65,8 @@ public class afQuery extends afLoggable {
      *         .end();
      */
     public afReadOperation select() throws Exception {
+        if (this.getInstance() == null)
+            throw new Exception("You must define an instance with 'of()' before 'select'");
         return new afReadOperation(this);
     }
 
@@ -97,6 +99,8 @@ public class afQuery extends afLoggable {
      *         .end();
      */
     public afUpdateOperation update(Map<String, Object> new_values) throws Exception {
+        if (this.getInstance() == null)
+            throw new Exception("You must define an instance with 'of()' before 'update'");
         return new afUpdateOperation(this, new_values);
     }
 
@@ -109,6 +113,8 @@ public class afQuery extends afLoggable {
      *         .end();
      */
     public afDeleteOperation delete() throws Exception {
+        if (this.getInstance() == null)
+            throw new Exception("You must define an instance with 'of()' before 'delete'");
         return new afDeleteOperation(this);
     }
 
@@ -120,6 +126,8 @@ public class afQuery extends afLoggable {
      *         .end();
      */    
     public afInsertOperation insert() throws Exception {
+        if (this.getInstance() == null)
+            throw new Exception("You must define an instance with 'of()' before 'insert'");
         return new afInsertOperation(this);
     }
 }

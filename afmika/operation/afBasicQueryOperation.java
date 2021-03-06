@@ -61,6 +61,8 @@ public class afBasicQueryOperation extends afOperation {
                         method.invoke(temp, res_set.getDouble(name));
                     } else if (type.equals("float")) {
                         method.invoke(temp, res_set.getFloat(name));
+                    } else if (type.equals("java.math.BigDecimal")) {
+                        method.invoke(temp, res_set.getBigDecimal(name));
                     } else if (type.equals("java.sql.Date")) {
                         method.invoke(temp, res_set.getDate(name));
                     } else if (type.equals("java.sql.Timestamp")) {
