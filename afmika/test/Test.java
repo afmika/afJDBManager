@@ -19,7 +19,7 @@ public class Test {
     }
     
     public static void main(String[] args) throws Exception {
-        Connection con = Test.getConnection("afdbtest", "afdbtest");
+        Connection con = Test_1.getConnection("afdbtest", "afdbtest");
         afQuery query = afQuery.use(con);
 
         Map<String, Object> new_values = new HashMap<>();
