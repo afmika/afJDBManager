@@ -19,6 +19,7 @@ ArrayList<Person> list =
 // with filters
 ArrayList<Person> list =
     query.of(new Person())
+		.select()
         .where("age > 5 AND score < ?", new Object[]{10.5})
         .<Person>get();
 
