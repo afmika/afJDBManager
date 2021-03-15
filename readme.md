@@ -26,6 +26,7 @@ ArrayList<Person> list =
 // querying a view
 ArrayList<Person> list =
     query.of(new Person(), "AverageScorers") // this view must have the same structure as Person
+		.select()
         .<Person>get();
 ```
 ### Update
