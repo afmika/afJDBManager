@@ -55,11 +55,11 @@ public class afBasicQueryOperation extends afOperation {
                     String meth_name = "set" + afReflectTools.capitalizeFirstLetter(name);
                     Method method = temp.getClass().getMethod(meth_name, field.getType());
 
-                    if (type.equals("int")) {
+                    if (type.equals("int") || type.equals("java.lang.Integer")) {
                         method.invoke(temp, res_set.getInt(name));
-                    } else if (type.equals("double")) {
+                    } else if (type.equals("double") || type.equals("java.lang.Double")) {
                         method.invoke(temp, res_set.getDouble(name));
-                    } else if (type.equals("float")) {
+                    } else if (type.equals("float") || type.equals("java.lang.Float")) {
                         method.invoke(temp, res_set.getFloat(name));
                     } else if (type.equals("java.math.BigDecimal")) {
                         method.invoke(temp, res_set.getBigDecimal(name));
