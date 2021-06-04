@@ -14,8 +14,7 @@ public class afReflectTools {
         ArrayList<Field> out = new ArrayList<>();
         for (Field f : fields) {
             int mod = f.getModifiers();
-            boolean encapsulated = ( Modifier.isProtected(mod)
-                        || Modifier.isPrivate(mod) );
+            boolean encapsulated = Modifier.isProtected(mod);
             if ( !encapsulated )
                 out.add(f);
         }
