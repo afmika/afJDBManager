@@ -74,22 +74,34 @@ public class Test {
 
         // int count = query.of(new PersonAnnotated())
         //     .delete()
-        //     .where("idperson = 1")
+        //     .where("score >= 100")
         //     .end();
         // System.out.println("REMOVED " + count);
 
-        PersonAnnotated pers = new PersonAnnotated();
-        int nextval = query.sequence("PersonSequence").nextValue();
-        query.log("SEQUENCE = " + nextval);
-        pers.setIdPerSoNwawa(nextval);
-        pers.setName("UUU");
-        pers.setScore(77.7f);
-        pers.setBirthDateWoo(Timestamp.valueOf("2010-04-01 00:02:11"));
+        // insert
+        // PersonAnnotated pers = new PersonAnnotated();
+        // int nextval = query.sequence("PersonSequence").nextValue();
+        // query.log("SEQUENCE = " + nextval);
+        // pers.setIdPerSoNwawa(nextval);
+        // pers.setName("UUU");
+        // pers.setScore(77.7f);
+        // pers.setBirthDateWoo(Timestamp.valueOf("2010-04-01 00:02:11"));
         
-        query.of(pers)
-            .insert()
-            .end(); // ok
+        // query.of(pers)
+        //     .insert()
+        //     .end(); // ok
 
+        // Update
+        // Map<String, Object> new_values = new HashMap<>();
+        // new_values.put("score", 100);
+        // new_values.put("birth_date", Timestamp.valueOf("2005-01-01 01:48:00"));
+
+        // query.of(new PersonAnnotated())
+        //     .update(new_values)
+        //     .where("score >= 77")
+        //     .end(); // ok
+
+        // select
         query.of (new PersonAnnotated())
             .select()
             .get().forEach(p -> {
@@ -99,7 +111,7 @@ public class Test {
    }
 
    public static void main (String[] args) throws Exception {
-       // runSimpleCase();
+    //    runSimpleCase();
        runAnnotatedCase();
    }
 }

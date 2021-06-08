@@ -1,13 +1,9 @@
 package operation;
 
 import core.*;
-import sun.security.jca.GetInstance;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 /**
  * @author afmika
@@ -44,6 +40,9 @@ public class afOperation extends afLoggable {
     }
 
     public String getTable_name () throws Exception {
+        String table_name = getAfquery().getTable_name();
+        if (table_name != null)
+            return table_name; // for example a view
         return afReflectTools.extractTableTarget(this.getAfquery().getInstance());
     }
     
