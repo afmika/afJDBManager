@@ -17,8 +17,8 @@ public class PersonAnnotated {
     float score = 0;
     
     @afColumn (alias = "birth_date")
-	Timestamp birthDateWoo = null;
-
+    Timestamp birthDateWoo = null;
+    
     public int getIdPerSoNwawa() {
         return idPerSoNwawa;
     }

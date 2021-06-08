@@ -1,10 +1,13 @@
 package operation;
 
 import core.*;
+import sun.security.jca.GetInstance;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 /**
  * @author afmika
@@ -46,20 +49,5 @@ public class afOperation extends afLoggable {
     
     public afQuery getAfquery () {
         return this.afquery;
-    }
-
-    public Field[] getAllNonIgnoredFields () {
-        Object instance = this.getAfquery().getInstance();
-        Field[] fields = afReflectTools.extractPublicAndFriendlyFields(instance);
-
-        return Arrays.asList(fields)
-                    .stream()
-                    .filter((Field field) -> {
-                        boolean found = false;
-                        for (String str : ignored_cols)
-                            found = str.equals(field.getName());
-                        return !found;
-                    })
-                    .toArray(Field[]::new);
     }
 }

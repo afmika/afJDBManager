@@ -71,6 +71,25 @@ public class Test {
    public static void runAnnotatedCase () throws Exception {
         Connection con = getConnection();
         afQuery query = afQuery.use(con); 
+
+        // int count = query.of(new PersonAnnotated())
+        //     .delete()
+        //     .where("idperson = 1")
+        //     .end();
+        // System.out.println("REMOVED " + count);
+
+        PersonAnnotated pers = new PersonAnnotated();
+        int nextval = query.sequence("PersonSequence").nextValue();
+        query.log("SEQUENCE = " + nextval);
+        pers.setIdPerSoNwawa(nextval);
+        pers.setName("UUU");
+        pers.setScore(77.7f);
+        pers.setBirthDateWoo(Timestamp.valueOf("2010-04-01 00:02:11"));
+        
+        query.of(pers)
+            .insert()
+            .end(); // ok
+
         query.of (new PersonAnnotated())
             .select()
             .get().forEach(p -> {
