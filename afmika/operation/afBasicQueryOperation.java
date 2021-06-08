@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import core.*;
 
@@ -45,16 +47,20 @@ public class afBasicQueryOperation extends afOperation {
             Object object = instance;
             Class<?> cls = object.getClass();
 
-            Field[] fields = afReflectTools.extractPublicAndFriendlyFields(object);
+            // Field[] fields = afReflectTools.extractPublicAndFriendlyFields(object);
+            Map<String, Field> fieldMap = afReflectTools.extractFieldWithProperAliases(object);
+            Set<String> fieldAlias = fieldMap.keySet();
             while (res_set.next()) {
                 T temp = (T) cls.newInstance();
-
-                for (Field field : fields) {
+                for (String alias : fieldAlias) {
+                    Field field = fieldMap.get(alias);
+                    String name = alias; // actual column name
+                    String field_name = field.getName(); // field name as an object
                     String type = field.getType().getName();
-                    String name = field.getName();
-                    String meth_name = "set" + afReflectTools.capitalizeFirstLetter(name);
+                    String meth_name = "set" + afReflectTools.capitalizeFirstLetter(field_name);
                     Method method = temp.getClass().getMethod(meth_name, field.getType());
 
+                    // we invoke the method using field_name while we fetch the result set using alias
                     if (type.equals("int") || type.equals("java.lang.Integer")) {
                         method.invoke(temp, res_set.getInt(name));
                     } else if (type.equals("double") || type.equals("java.lang.Double")) {

@@ -9,17 +9,15 @@ import core.afQuery;
 
 public class Test {
 
-    public static Connection getConnection (String user, String pwd) throws Exception {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", user, pwd);
-        } catch (Exception e) {
-            throw e;
-        }
+    public static Connection getConnection () throws Exception {
+        String url = "jdbc:postgresql://localhost/afdbtest";
+        String user = "postgres";
+        String password = "1234";
+        return DriverManager.getConnection(url, user, password);
     }
     
-    public static void main(String[] args) throws Exception {
-        Connection con = Test_1.getConnection("afdbtest", "afdbtest");
+    public static void runSimpleCase () throws Exception {
+        Connection con = Test.getConnection();
         afQuery query = afQuery.use(con);
 
         Map<String, Object> new_values = new HashMap<>();
@@ -67,5 +65,22 @@ public class Test {
         //         System.out.println("=>" +x);
         //      });
         
-    }
+        con.close();
+   }
+
+   public static void runAnnotatedCase () throws Exception {
+        Connection con = getConnection();
+        afQuery query = afQuery.use(con); 
+        query.of (new PersonAnnotated())
+            .select()
+            .get().forEach(p -> {
+                System.out.println("==> " + p);
+            });
+        con.close();
+   }
+
+   public static void main (String[] args) throws Exception {
+       // runSimpleCase();
+       runAnnotatedCase();
+   }
 }

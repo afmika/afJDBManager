@@ -25,7 +25,7 @@ public class afSequenceOperation extends afOperation {
     }
     
     public int nextValue () throws Exception {
-        String sql = "SELECT " + sequence_name + ".nextval value FROM DUAL";
+        String sql = "SELECT NEXTVAL('" + sequence_name + "') as value";
         Sequence instance = new Sequence();
         ArrayList<Sequence> out = afquery.run(sql).<Sequence>get(instance);
         return out.get(0).getValue();

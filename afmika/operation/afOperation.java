@@ -40,16 +40,8 @@ public class afOperation extends afLoggable {
         return out;
     }
 
-    public String getTable_name () {
-        Class<?> inst_class = this.getAfquery().getInstance().getClass();
-        String table_name = this.getAfquery().getTable_name();
-        
-        if (table_name == null) {
-            String[] names = inst_class.getName().split("\\.");
-            return names[Math.max(names.length - 1, 0)];
-        }
-
-        return table_name;
+    public String getTable_name () throws Exception {
+        return afReflectTools.extractTableTarget(this.getAfquery().getInstance());
     }
     
     public afQuery getAfquery () {
