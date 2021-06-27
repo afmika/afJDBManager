@@ -90,7 +90,7 @@ public class afBasicQueryOperation extends afOperation {
         return result;
     }
 
-    public int end() throws SQLException {
+    public int end() throws Exception {
         String sql = sql_query;
 
         this.log(sql);
