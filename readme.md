@@ -1,6 +1,7 @@
 # afJDBManager
 A basic library  for SQL queries 100% written in java
 ## Basic uses
+table.sql
 ```sql
 CREATE TABLE Person ( 
 	idperson INT PRIMARY KEY, 
@@ -8,6 +9,53 @@ CREATE TABLE Person (
 	score float,
 	birth_date TIMESTAMP
 );
+```
+Person.java
+```java
+// if not annotated, the default class name will be used
+@afTable (alias = "Person")
+public class Person {
+    // you can annotate a class attribute if necessary 
+    // and map it to a column name
+    @afColumn (alias = "idperson")
+    int idPerSoNwawa = 0;
+    String name = null;
+    float score = 0;
+    @afColumn (alias = "birth_date")
+    Timestamp birthDateWoo = null;
+    
+    public int getIdPerSoNwawa() {
+        return idPerSoNwawa;
+    }
+
+    public void setIdPerSoNwawa(int idPerSoNwawa) {
+        this.idPerSoNwawa = idPerSoNwawa;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
+    }
+
+    public Timestamp getBirthDateWoo() {
+        return birthDateWoo;
+    }
+
+    public void setBirthDateWoo(Timestamp birthDateWoo) {
+        this.birthDateWoo = birthDateWoo;
+    }
+}
 ```
 ### Select
 ```java
@@ -38,8 +86,8 @@ new_values.put("birth_date", Timestamp.valueOf("2000-01-01 01:48:00"));
 
 // without filters
 int row_affected = query.of(new Person())
-    .update(new_values)
-    .end();
+                        .update(new_values)
+                        .end();
 
 // with filters
 int row_affected = query.of(new Person())

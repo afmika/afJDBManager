@@ -1,3 +1,4 @@
+\c postgres
 DROP DATABASE afdbtest;
 CREATE DATABASE afdbtest;
 \c afdbtest;
